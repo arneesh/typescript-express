@@ -19,22 +19,7 @@ const router = Router();
 
 
 
-router.post('/login', (req: RequestWithBody, res: Response) => {
-    const { email, password } = req.body;
 
-
-    // console.log("Request", req.body);
-
-    if(email && password && (email ==='arn@gmail.com') && (password==='abc')){
-
-        req.session = {loggedIn: true};
-        res.redirect('/');
-
-    } else {
-        res.send('Email Property is required');
-    }
-
-});
 
 router.get('/', (req: Request , res: Response ) => {
 

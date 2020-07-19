@@ -1,6 +1,6 @@
-import { Router, Request, Response, request, NextFunction } from 'express';
-import { get } from './decorators/routes';
-import { controller } from './decorators/controller'
+import { Request, Response, NextFunction } from 'express';
+import { get, controller, use, bodyValidator, post } from './decorators';
+
 
 @controller('/auth')
 class LoginController {
@@ -20,6 +20,19 @@ class LoginController {
             </form>
             `);
     }
+
+    @post('/login')
+    @bodyValidator('email', 'password')
+    postLogin(req: Request, res: Response): void {
+        const { email, password } = req.body;
+        
+        if(email ==='arn@gmail.com' && password==='abc'){
+            req.session = {loggedIn: true};
+            res.redirect('/');
+        } else {
+            res.send('Email Property is required');
+        }
+    };
 
 
 
