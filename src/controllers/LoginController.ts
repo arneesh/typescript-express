@@ -4,6 +4,7 @@ import { get, controller, use, bodyValidator, post } from './decorators';
 
 @controller('/auth')
 class LoginController {
+
     @get('/login')
     getLogin(req: Request,res: Response): void  {
             res.send(`
@@ -32,7 +33,13 @@ class LoginController {
         } else {
             res.send('Email Property is required');
         }
-    };
+    }
+
+    @get('/logout')
+    getLogout (req: Request, res: Response) {
+        req.session = null;
+        res.redirect('/');
+    }
 
 
 
